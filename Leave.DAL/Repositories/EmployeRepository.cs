@@ -66,7 +66,7 @@ namespace Leave.DAL.Repositories
 
             using (var connection = new SqlCeConnection("Data Source=SqlCe_W3Schools.sdf"))
             {
-                var orderDetails =await connection.QueryAsync<OrderDetail>(sql).Result.ToList();
+                var orderDetails = await connection.QueryAsync<OrderDetail>(sql).Result.ToList();
 
                 Console.WriteLine(orderDetails.Count());
 
@@ -84,63 +84,65 @@ namespace Leave.DAL.Repositories
         public async Task<ResultCode> RemoveAsync(Guid id)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
-
+            IDbConnection connection = null;
+            IDbTransaction transaction = null;
             try
 
             {
 
-                using (IDbConnection connection = new SqlConnection(connectionString))
+                connection = new SqlConnection(connectionString)
 
-                {
+
+
+
 
                     string speakerQuery = "DELETE FROM Speakers WHERE SpeakerId = @SpeakerId";
 
-                    string eventQuery = "DELETE FROM Events WHERE SpeakerId = @SpeakerId";
+                string eventQuery = "DELETE FROM Events WHERE SpeakerId = @SpeakerId";
 
-                    IDbTransaction transaction = connection.BeginTransaction();
+                transaction = connection.BeginTransaction();
 
-                    int rowsAffected = await connection.ExecuteAsync(speakerQuery, new { SpeakerId = speaker.SpeakerId }, transaction);
+                int rowsAffected = await connection.ExecuteAsync(speakerQuery, new { SpeakerId = speaker.SpeakerId }, transaction);
 
-                    rowsAffected += await connection.ExecuteAsync(eventQuery, new { SpeakerId = speaker.SpeakerId }, transaction);
+                rowsAffected += await connection.ExecuteAsync(eventQuery, new { SpeakerId = speaker.SpeakerId }, transaction);
 
-                    transaction.Commit();
-
-                    return rowsAffected;
-
-                }
-
+                transaction.Commit();
             }
-
             catch (Exception ex)
 
             {
 
                 Console.WriteLine(ex.Message);
-
-                return -1;
+                transaction.Rollback();
+                return new ResultCode(ex);
 
             }
-
-        }
-    }
-
-        public Task<ResultCode> UpdateAsync(EmployeModel entity)
-        {
-
-
-            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["myDbConnection"].ConnectionString))
+            finally
             {
-                string selectQuery = @"SELECT * FROM [dbo].[Customer] WHERE FirstName = @FirstName";
+                connection.Close;
 
-                var result = db.Query(selectQuery, new
-                {
-                    customerModel.FirstName
-                });
             }
-
-
-            throw new NotImplementedException();
 
         }
     }
+
+    public Task<ResultCode> UpdateAsync(EmployeModel entity)
+    {
+
+
+        using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["myDbConnection"].ConnectionString))
+        {
+            string selectQuery = @"SELECT * FROM [dbo].[Customer] WHERE FirstName = @FirstName";
+
+            var result = db.Query(selectQuery, new
+            {
+                customerModel.FirstName
+            });
+        }
+
+
+        throw new NotImplementedException();
+
+    }
+}
 }
