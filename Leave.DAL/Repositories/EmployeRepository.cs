@@ -1,19 +1,25 @@
-﻿using Leave.DAL.Models;
+﻿using Dapper;
+using Leave.DAL.Context.Base;
+using Leave.DAL.Models;
 using Leave.DAL.Models.Base;
+using Leave.DAL.Repositories.Base;
 using Leave.DAL.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Leave.DAL.Repositories
 {
-    public class EmployeRepository : IEmployeRepository
+    public class EmployeRepository : BaseRepository, IEmployeRepository
     {
+        public EmployeRepository(IDbContextBase dbContext, string tableName) :base(dbContext,tableName)
+        {
+
+        }
+
         public Task<ResultCode> AddAsync(EmployeModel entity)
         {
             throw new NotImplementedException();
@@ -57,8 +63,6 @@ namespace Leave.DAL.Repositories
             }
             finally
             {
-                // Close the connection explicitly, to make sure it gets closed.
-                // Otherwise, we might start leaking connections.
                 connection.Close();
             }
 
@@ -78,71 +82,117 @@ namespace Leave.DAL.Repositories
 
         public Task<EmployeModel> FindByIDAsync(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ResultCode> RemoveAsync(Guid id)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             IDbConnection connection = null;
             IDbTransaction transaction = null;
             try
-
             {
-
-                connection = new SqlConnection(connectionString)
-
-
-
-
-
-                    string speakerQuery = "DELETE FROM Speakers WHERE SpeakerId = @SpeakerId";
-
-                string eventQuery = "DELETE FROM Events WHERE SpeakerId = @SpeakerId";
+                string speakerQuery = "DELETE FROM Events WHERE SpeakerId = @SpeakerId";
+                connection = new SqlConnection(connectionString);
 
                 transaction = connection.BeginTransaction();
 
-                int rowsAffected = await connection.ExecuteAsync(speakerQuery, new { SpeakerId = speaker.SpeakerId }, transaction);
-
-                rowsAffected += await connection.ExecuteAsync(eventQuery, new { SpeakerId = speaker.SpeakerId }, transaction);
+                int rowsAffected = await connection.ExecuteAsync(speakerQuery, new { SpeakerId = id }, transaction);
 
                 transaction.Commit();
+                return new ResultCode();
             }
             catch (Exception ex)
-
             {
-
-                Console.WriteLine(ex.Message);
-                transaction.Rollback();
-                return new ResultCode(ex);
+                try
+                {
+                    transaction.Rollback();
+                    return new ResultCode(ex);
+                }
+                catch
+                {
+                    throw;
+                }
 
             }
             finally
             {
-                connection.Close;
+                connection.Close();
+                connection.Dispose();
+                transaction.Dispose();
+            }
+        }
 
+        public async Task<ResultCode> RemoveAsync(Guid id)
+        {
+            IDbConnection connection = null;
+            IDbTransaction transaction = null;
+            try
+            {
+                string speakerQuery = "DELETE FROM Events WHERE SpeakerId = @SpeakerId";
+                connection = new SqlConnection(connectionString);
+
+                transaction = connection.BeginTransaction();
+
+                int rowsAffected = await connection.ExecuteAsync(speakerQuery, new { SpeakerId = id }, transaction);
+
+                transaction.Commit();
+                return new ResultCode();
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaction.Rollback();
+                    return new ResultCode(ex);
+                }
+                catch
+                {
+                    throw;
+                }
+
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+                transaction.Dispose();
             }
 
         }
     }
 
+
     public Task<ResultCode> UpdateAsync(EmployeModel entity)
     {
 
-
-        using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["myDbConnection"].ConnectionString))
+        IDbConnection connection = null;
+        IDbTransaction transaction = null;
+        try
         {
-            string selectQuery = @"SELECT * FROM [dbo].[Customer] WHERE FirstName = @FirstName";
+            string speakerQuery = "DELETE FROM Events WHERE SpeakerId = @SpeakerId";
+            connection = new SqlConnection(connectionString);
 
-            var result = db.Query(selectQuery, new
-            {
-                customerModel.FirstName
-            });
+            transaction = connection.BeginTransaction();
+
+            int rowsAffected = await connection.ExecuteAsync(speakerQuery, new { SpeakerId = id }, transaction);
+
+            transaction.Commit();
+            return new ResultCode();
         }
+        catch (Exception ex)
+        {
+            try
+            {
+                transaction.Rollback();
+                return new ResultCode(ex);
+            }
+            catch
+            {
+                throw;
+            }
 
-
-        throw new NotImplementedException();
-
+        }
+        finally
+        {
+            connection.Close();
+            connection.Dispose();
+            transaction.Dispose();
+        }
     }
 }
-}
+

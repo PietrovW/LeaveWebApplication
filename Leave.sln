@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leave.DAL", "Leave.DAL\Leav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leave.Infrastructure", "Leave.Infrastructure\Leave.Infrastructure.csproj", "{1AAF9870-E2F8-4E55-8C72-39AA11C8BC24}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DateBase", "DateBase", "{F29AFCB9-BBE7-48F4-B7F4-44D7B2F474D2}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Leave.Database", "Leave.Database\Leave.Database.sqlproj", "{4FF49EA1-B94C-4084-A136-0321B8963D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,18 @@ Global
 		{1AAF9870-E2F8-4E55-8C72-39AA11C8BC24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AAF9870-E2F8-4E55-8C72-39AA11C8BC24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AAF9870-E2F8-4E55-8C72-39AA11C8BC24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FF49EA1-B94C-4084-A136-0321B8963D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FF49EA1-B94C-4084-A136-0321B8963D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FF49EA1-B94C-4084-A136-0321B8963D59}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4FF49EA1-B94C-4084-A136-0321B8963D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FF49EA1-B94C-4084-A136-0321B8963D59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FF49EA1-B94C-4084-A136-0321B8963D59}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4FF49EA1-B94C-4084-A136-0321B8963D59} = {F29AFCB9-BBE7-48F4-B7F4-44D7B2F474D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3AC07EC-6300-48CC-BA6F-2D6F21EBF8DC}
