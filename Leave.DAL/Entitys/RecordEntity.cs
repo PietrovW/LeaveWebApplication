@@ -1,9 +1,9 @@
-﻿using Leave.DAL.Models.Base;
+﻿using Leave.DAL.Entitys.Base;
 using System;
 
-namespace Leave.DAL.Models
+namespace Leave.DAL.Entitys
 {
-    public class RecordModel : TEntity
+    public class RecordEntity : TEntity
     {
         public int EmployeId { get; set; }
         public int FurloughId { get; set; }

@@ -23,16 +23,10 @@ namespace Leave.Infrastructure.IoC
             builder.RegisterInstance(AutoMapperConfig.Initialize())
                 .SingleInstance();
             builder.RegisterModule<CommandModule>();
+            builder.RegisterModule<ConnectionSQLModule>();
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<ServiceModule>();
-            /*
-            builder.RegisterModule<CommandModule>();
-            builder.RegisterModule<RepositoryModule>();
-            builder.RegisterModule<MongoModule>();
-            builder.RegisterModule<SqlModule>();
-            
-            builder.RegisterModule(new SettingsModule(_configuration));
-    */
+          
         }
     }
 }

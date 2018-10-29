@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Leave.DAL.Models;
+using Leave.DAL.Entitys;
 using Leave.Infrastructure.DTO;
 
 namespace Leave.Infrastructure.Mappers
@@ -9,12 +9,11 @@ namespace Leave.Infrastructure.Mappers
         public static IMapper Initialize()
             => new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<DepartmentModel, DepartmentDto>();
-              //  cfg.CreateMap<Driver, DriverDetailsDto>();
-                //cfg.CreateMap<Node, NodeDto>();
-                //cfg.CreateMap<Route, RouteDto>();
-                //cfg.CreateMap<User, UserDto>();
-                //cfg.CreateMap<Vehicle, VehicleDto>();
+                cfg.CreateMap<DepartmentEntity, DepartmentDto>();
+                cfg.CreateMap<EmployeEntity, EmployeDto>();
+                cfg.CreateMap<EmployeEntity, EmployeDto>();
+                cfg.CreateMap<FurloughEntity, FurloughDto>();
+                cfg.CreateMap<RecordEntity, RecordDto>();
             })
             .CreateMapper();
     }

@@ -11,10 +11,9 @@ namespace Leave.DAL.Context
         private SqlConnection _connection;
         private SqlTransaction _transaction;
 
-        public DbContextBase(string connectionString)
+        public DbContextBase(IConnectionFactory connectionFactory)
         {
-            _connection = new SqlConnection(connectionString);
-            //   _connection.Open();
+            _connection = new SqlConnection(connectionFactory.ConnectionString);
             _transaction = _connection.BeginTransaction();
         }
         public SqlConnection Connection() => _connection;

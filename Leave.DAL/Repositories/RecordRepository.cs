@@ -1,54 +1,29 @@
-﻿using Leave.DAL.Models;
-using Leave.DAL.Models.Base;
+﻿using Leave.DAL.Context.Base;
+using Leave.DAL.Entitys;
+using Leave.DAL.Repositories.Base;
 using Leave.DAL.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Leave.DAL.Repositories
 {
-    public class RecordRepository : IRecordRepository
+    public class RecordRepository : GenericRepository<RecordEntity>, IRecordRepository
     {
-        public Task<ResultCode> AddAsync(RecordModel entity)
+        public RecordRepository(IDbContextBase dbContext, string tableName) : base(dbContext, tableName)
         {
-            throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<RecordModel>> AllAsync()
+        internal override dynamic Mapping(RecordEntity item)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<RecordModel>> FindAllAsync(Expression<Func<RecordModel, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<RecordModel> FindAsync(Expression<Func<RecordModel, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<RecordModel> FindByIDAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResultCode> RemoveAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResultCode> UpdateAsync(RecordModel entity)
-        {
-            throw new NotImplementedException();
+            return new
+            {
+                item.Id,
+                item.DepartmentId,
+                item.EmployeId,
+                item.From,
+                item.To,
+                item.FVer,
+                item.Inserted,
+                item.Updated
+            };
         }
     }
 }

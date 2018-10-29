@@ -1,54 +1,27 @@
-﻿using Leave.DAL.Models;
-using Leave.DAL.Models.Base;
+﻿using Leave.DAL.Context.Base;
+using Leave.DAL.Entitys;
+using Leave.DAL.Repositories.Base;
 using Leave.DAL.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Leave.DAL.Repositories
 {
-    public class FurloughRepository : IFurloughRepository
+    public class FurloughRepository : GenericRepository<FurloughEntity>, IFurloughRepository
     {
-        public Task<ResultCode> AddAsync(FurloughModel entity)
+        public FurloughRepository(IDbContextBase dbContext, string tableName) : base(dbContext, tableName)
         {
-            throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<FurloughModel>> AllAsync()
+        internal override dynamic Mapping(FurloughEntity item)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<FurloughModel>> FindAllAsync(Expression<Func<FurloughModel, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<FurloughModel> FindAsync(Expression<Func<FurloughModel, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<FurloughModel> FindByIDAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResultCode> RemoveAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResultCode> UpdateAsync(FurloughModel entity)
-        {
-            throw new NotImplementedException();
+            return new
+            {
+                item.Id,
+                item.Name,
+                item.Inserted,
+                item.Updated,
+                item.FVer
+            };
         }
     }
 }

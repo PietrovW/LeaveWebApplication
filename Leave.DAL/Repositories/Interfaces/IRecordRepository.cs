@@ -1,12 +1,9 @@
-﻿using Leave.DAL.Models;
+﻿using Leave.DAL.Entitys;
 using Leave.DAL.Repositories.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Leave.DAL.Repositories.Interfaces
 {
-    public interface IRecordRepository : IRepository, IReadOnlyRepository<RecordModel>, IWriteOnlyRepositoryy<RecordModel>
+    public interface IRecordRepository : IRepository<RecordEntity>
     {
     }
 }

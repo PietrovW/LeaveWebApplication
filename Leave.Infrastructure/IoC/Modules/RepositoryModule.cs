@@ -16,7 +16,8 @@ namespace Leave.Infrastructure.IoC.Modules
                 .Assembly;
 
             builder.RegisterAssemblyTypes(assembly)
-                   .Where(x => x.IsAssignableTo<IRepository>())
+                   .Where(x => x.Name.EndsWith("Repository"))
+                   .AsClosedTypesOf(typeof(IRepository<>))
                    .AsImplementedInterfaces()
                    .InstancePerLifetimeScope();
         }
