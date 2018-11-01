@@ -12,12 +12,12 @@ namespace Leave.Infrastructure.Services.Interfaces
 {
     public interface IEmployeService : IService
     {
-        Task<ResultCode> AddAsync(EmployeDto entity);
+        Task<ReturnCode> AddAsync(EmployeDto entity);
         Task<IEnumerable<EmployeDto>> AllAsync();
         Task<IEnumerable<EmployeDto>> FindAllAsync(Expression<Func<EmployeDto, bool>> predicate);
         Task<EmployeDto> FindAsync(Expression<Func<EmployeDto, bool>> predicate);
         Task<EmployeDto> FindByIDAsync(Guid id);
-        Task<ResultCode> RemoveAsync(Guid id);
-        Task<ResultCode> UpdateAsync(EmployeDto entity);
+        Task<ReturnCode> RemoveAsync(Guid id);
+        Task<ReturnCode> UpdateAsync(EmployeDto entity);
     }
 }

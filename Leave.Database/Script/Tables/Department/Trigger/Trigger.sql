@@ -6,7 +6,8 @@
 		SET NOCOUNT ON;
 		  
 	UPDATE X 
-	SET Inserted = GETDATE()
+	SET Inserted = GETDATE(),
+	 Updated = GETDATE()
 	FROM [dbo].[Department] X
 	JOIN inserted i ON X.Id = i.Id
 END;

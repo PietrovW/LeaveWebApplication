@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Leave.Infrastructure.Services.Base
 {
-    public interface IService
+    public interface IService: IDisposable
     {
     }
 }

@@ -1,4 +1,7 @@
-﻿using Leave.DAL.Models.Base;
+﻿using AutoMapper;
+using Leave.DAL.Entitys;
+using Leave.DAL.Models.Base;
+using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;
 using Leave.Infrastructure.Services.Interfaces;
 using System;
@@ -11,14 +14,33 @@ namespace Leave.Infrastructure.Services
 {
     public class EmployeService : IEmployeService
     {
-        public Task<ResultCode> AddAsync(EmployeDto entity)
+        private readonly IEmployeRepository _employeRepository;
+        private readonly IMapper _mapper;
+
+        public EmployeService(IEmployeRepository employeRepository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _employeRepository = employeRepository;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<EmployeDto>> AllAsync()
+        public async Task<ReturnCode> AddAsync(EmployeDto entity)
         {
-            throw new NotImplementedException();
+            var employeEntity = _mapper.Map<EmployeDto, EmployeEntity> (entity);
+            var employ =await _employeRepository.AddAsync(employeEntity);
+
+            return employ.Item1;
+        }
+
+        public async Task<IEnumerable<EmployeDto>> AllAsync()
+        {
+            Tuple<ReturnCode,IEnumerable<EmployeEntity>> employeEntities= await _employeRepository.AllAsync();
+
+            return _mapper.Map<IEnumerable<EmployeEntity>,IEnumerable<EmployeDto>> (employeEntities.Item2);
+        }
+
+        public void Dispose()
+        {
+            _employeRepository.Dispose();
         }
 
         public Task<IEnumerable<EmployeDto>> FindAllAsync(Expression<Func<EmployeDto, bool>> predicate)
@@ -36,14 +58,17 @@ namespace Leave.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public Task<ResultCode> RemoveAsync(Guid id)
+        public Task<ReturnCode> RemoveAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ResultCode> UpdateAsync(EmployeDto entity)
+        public async Task<ReturnCode> UpdateAsync(EmployeDto entity)
         {
-            throw new NotImplementedException();
+            var employeEntity = _mapper.Map<EmployeDto, EmployeEntity>(entity);
+            var employ = await _employeRepository.UpdateAsync(employeEntity);
+
+            return employ;
         }
     }
 }
