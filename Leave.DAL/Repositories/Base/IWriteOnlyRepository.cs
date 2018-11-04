@@ -9,6 +9,6 @@ namespace Leave.DAL.Repositories.Base
     {
         Task<Tuple<ReturnCode,T>> AddAsync(T entity);
         Task<ReturnCode> UpdateAsync(T entity);
-        Task<ReturnCode> RemoveAsync(Guid id);
+        Task<ReturnCode> RemoveAsync(int id);
     }
 }

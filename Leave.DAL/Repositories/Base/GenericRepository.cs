@@ -34,7 +34,7 @@ namespace Leave.DAL.Repositories.Base
             return items;
         }
       
-        public virtual async Task<ReturnCode> RemoveAsync(Guid id)
+        public virtual async Task<ReturnCode> RemoveAsync(int id)
         {
             ReturnCode returnCode = await Connection.ExecuteNonQueryAsync("DELETE FROM " + this.TableName + " WHERE ID=@ID", new { Id = id });
             return returnCode;

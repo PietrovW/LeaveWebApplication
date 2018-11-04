@@ -38,29 +38,16 @@ namespace Leave.Infrastructure.Services
             return _mapper.Map<IEnumerable<EmployeEntity>,IEnumerable<EmployeDto>> (employeEntities.Item2);
         }
 
-        public void Dispose()
+        public async Task<IEnumerable<EmployeDto>> FindAllAsync(Expression<Func<EmployeDto, bool>> predicate)
         {
-            _employeRepository.Dispose();
+            Tuple<ReturnCode, IEnumerable<EmployeEntity>> employeEntities = await _employeRepository.FindAllAsync(predicate);
+
+            return _mapper.Map<IEnumerable<EmployeEntity>, IEnumerable<EmployeDto>>(employeEntities.Item2);
         }
 
-        public Task<IEnumerable<EmployeDto>> FindAllAsync(Expression<Func<EmployeDto, bool>> predicate)
+        public async Task<ReturnCode> RemoveAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<EmployeDto> FindAsync(Expression<Func<EmployeDto, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<EmployeDto> FindByIDAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ReturnCode> RemoveAsync(Guid id)
-        {
-            throw new NotImplementedException();
+            return await _employeRepository.RemoveAsync(id);
         }
 
         public async Task<ReturnCode> UpdateAsync(EmployeDto entity)
@@ -69,6 +56,11 @@ namespace Leave.Infrastructure.Services
             var employ = await _employeRepository.UpdateAsync(employeEntity);
 
             return employ;
+        }
+
+        public void Dispose()
+        {
+            _employeRepository.Dispose();
         }
     }
 }

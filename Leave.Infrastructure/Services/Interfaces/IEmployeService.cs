@@ -15,9 +15,7 @@ namespace Leave.Infrastructure.Services.Interfaces
         Task<ReturnCode> AddAsync(EmployeDto entity);
         Task<IEnumerable<EmployeDto>> AllAsync();
         Task<IEnumerable<EmployeDto>> FindAllAsync(Expression<Func<EmployeDto, bool>> predicate);
-        Task<EmployeDto> FindAsync(Expression<Func<EmployeDto, bool>> predicate);
-        Task<EmployeDto> FindByIDAsync(Guid id);
-        Task<ReturnCode> RemoveAsync(Guid id);
+        Task<ReturnCode> RemoveAsync(int id);
         Task<ReturnCode> UpdateAsync(EmployeDto entity);
     }
 }
