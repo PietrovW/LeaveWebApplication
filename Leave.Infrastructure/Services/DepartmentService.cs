@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Leave.DAL.Entitys;
 using Leave.DAL.Models.Base;
 using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;
@@ -20,14 +21,41 @@ namespace Leave.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public Task<ReturnCode> AddAsync(DepartmentDto entity)
+        public async Task<ReturnCode> AddAsync(DepartmentDto entity)
         {
-            throw new NotImplementedException();
+            var departmentEntity = _mapper.Map<DepartmentDto, DepartmentEntity>(entity);
+            var employ = await _departmentRepository.AddAsync(departmentEntity);
+
+            return employ.Item1;
         }
 
-        public Task<IEnumerable<DepartmentDto>> AllAsync()
+        public async Task<IEnumerable<DepartmentDto>> AllAsync()
         {
-            throw new NotImplementedException();
+            Tuple<ReturnCode, IEnumerable<DepartmentEntity>> departmentEntities = await _departmentRepository.AllAsync();
+
+            return _mapper.Map<IEnumerable<DepartmentEntity>, IEnumerable<DepartmentDto>>(departmentEntities.Item2);
+        }
+
+       
+        public async Task<IEnumerable<DepartmentDto>> FindByIdAsync(int id)
+        {
+            
+            Tuple<ReturnCode, IEnumerable<DepartmentEntity>> departmentEntities = await _departmentRepository.FindAllAsync(x=>x.Id==id);
+
+            return _mapper.Map<IEnumerable<DepartmentEntity>, IEnumerable<DepartmentDto>>(departmentEntities.Item2);
+        }
+
+        public async Task<ReturnCode> RemoveAsync(int id)
+        {
+            return await _departmentRepository.RemoveAsync(id);
+        }
+
+        public async Task<ReturnCode> UpdateAsync(DepartmentDto entity)
+        {
+            var departmentEntities = _mapper.Map<DepartmentDto, DepartmentEntity>(entity);
+            var department = await _departmentRepository.UpdateAsync(departmentEntities);
+
+            return department;
         }
 
         public void Dispose()
@@ -35,19 +63,5 @@ namespace Leave.Infrastructure.Services
             _departmentRepository.Dispose();
         }
 
-        public Task<IEnumerable<DepartmentDto>> FindAllAsync(Expression<Func<DepartmentDto, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ReturnCode> RemoveAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ReturnCode> UpdateAsync(DepartmentDto entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

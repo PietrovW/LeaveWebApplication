@@ -12,7 +12,7 @@ namespace Leave.Infrastructure.Services.Interfaces
     {
         Task<ReturnCode> AddAsync(FurloughDto entity);
         Task<IEnumerable<FurloughDto>> AllAsync();
-        Task<IEnumerable<FurloughDto>> FindAllAsync(Expression<Func<FurloughDto, bool>> predicate);
+        Task<IEnumerable<FurloughDto>> FindByIdAsync(int id);
         Task<ReturnCode> RemoveAsync(int id);
         Task<ReturnCode> UpdateAsync(FurloughDto entity);
     }

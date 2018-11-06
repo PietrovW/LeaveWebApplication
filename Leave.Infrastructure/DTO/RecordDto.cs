@@ -1,5 +1,4 @@
-﻿using Leave.DAL.Models.Base;
-using System;
+﻿using System;
 
 namespace Leave.Infrastructure.DTO
 {

@@ -1,10 +1,7 @@
 ﻿using Autofac;
-using AutoMapper.Configuration;
+using Microsoft.Extensions.Configuration;
 using Leave.Infrastructure.IoC.Modules;
 using Leave.Infrastructure.Mappers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Leave.Infrastructure.IoC
 {
@@ -23,10 +20,10 @@ namespace Leave.Infrastructure.IoC
             builder.RegisterInstance(AutoMapperConfig.Initialize())
                 .SingleInstance();
             builder.RegisterModule<CommandModule>();
-            builder.RegisterModule<ConnectionSQLModule>();
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<ServiceModule>();
-          
+            builder.RegisterModule(new SettingsModule(_configuration));
+
         }
     }
 }

@@ -38,9 +38,9 @@ namespace Leave.Infrastructure.Services
             return _mapper.Map<IEnumerable<RecordEntity>, IEnumerable<RecordDto>>(recordEntities.Item2);
         }
 
-        public async Task<IEnumerable<RecordDto>> FindAllAsync(Expression<Func<RecordDto, bool>> predicate)
+        public async Task<IEnumerable<RecordDto>> FindByIdAsync(int id)
         {
-            Tuple<ReturnCode, IEnumerable<RecordEntity>> recordEntities = await _recordRepository.FindAllAsync(predicate);
+            Tuple<ReturnCode, IEnumerable<RecordEntity>> recordEntities = await _recordRepository.FindAllAsync(x=>x.Id==id);
 
             return _mapper.Map<IEnumerable<RecordEntity>, IEnumerable<RecordDto>>(recordEntities.Item2);
         }

@@ -38,9 +38,9 @@ namespace Leave.Infrastructure.Services
             return _mapper.Map<IEnumerable<FurloughEntity>, IEnumerable<FurloughDto>>(furloughEntities.Item2);
         }
 
-        public async Task<IEnumerable<FurloughDto>> FindAllAsync(Expression<Func<FurloughDto, bool>> predicate)
+        public async Task<IEnumerable<FurloughDto>> FindByIdAsync(int id)
         {
-            Tuple<ReturnCode, IEnumerable<FurloughEntity>> furloughEntities = await _furloughRepository.FindAllAsync(predicate);
+            Tuple<ReturnCode, IEnumerable<FurloughEntity>> furloughEntities = await _furloughRepository.FindAllAsync(x=>x.Id==id);
 
             return _mapper.Map<IEnumerable<FurloughEntity>, IEnumerable<FurloughDto>>(furloughEntities.Item2);
         }

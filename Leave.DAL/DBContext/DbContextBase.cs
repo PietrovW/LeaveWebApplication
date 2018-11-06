@@ -11,6 +11,7 @@ namespace Leave.DAL.Context
         private SqlConnection _connection;
         private SqlTransaction _transaction;
 
+
         public DbContextBase(IConnectionFactory connectionFactory)
         {
             _connection = new SqlConnection(connectionFactory.ConnectionString);

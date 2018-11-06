@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Leave.DAL.Repositories.Base
 {
-    public interface IReadOnlyRepository<T> : IDisposable where T : TEntity
+    public interface IReadOnlyRepository<T> : IDisposable where T : TEntity 
     {
         Task<Tuple<ReturnCode, IEnumerable<T>>> AllAsync();
         Task<Tuple<ReturnCode, IEnumerable<T>>> FindAllAsync(Expression<Func<T, bool>> predicate);

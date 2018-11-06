@@ -6,6 +6,7 @@ using Leave.DAL.Repositories.Interfaces;
 
 namespace Leave.DAL.Repositories
 {
+
     public class FurloughRepository : GenericRepository<FurloughEntity>, IFurloughRepository
     {
         public FurloughRepository(IDbContextBase dbContext, string tableName) : base(dbContext, tableName)

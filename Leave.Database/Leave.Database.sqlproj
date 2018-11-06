@@ -75,5 +75,7 @@
     <Build Include="dbo\Tables\Record.sql" />
     <PostDeploy Include="Script\Tables\Department\PostDeloyment\Script.PostDeployment_data_into.sql" />
     <Build Include="Script\Tables\Department\Trigger\Trigger.sql" />
+    <Build Include="Script\Tables\Department\Trigger\tg_bu_department.sql" />
+    <Build Include="Script\Tables\Department\Trigger\tg_bi_department.sql" />
   </ItemGroup>
 </Project>
