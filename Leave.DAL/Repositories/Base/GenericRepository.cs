@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using Dapper;
 using System.Threading.Tasks;
 using Leave.DAL.Extensions;
-using Leave.DAL.Entitys.Base;
+using Leave.Core.Domain.Entitys.Base;
 
 namespace Leave.DAL.Repositories.Base
 {

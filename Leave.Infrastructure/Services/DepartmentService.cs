@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Leave.DAL.Entitys;
+using Leave.Core.Domain.Entitys;
 using Leave.DAL.Models.Base;
 using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;

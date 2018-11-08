@@ -1,11 +1,11 @@
 ﻿using Leave.Core.Domain.Entitys.Base;
-using Leave.DAL.Models.Base;
+using Leave.Core.Domain.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Leave.DAL.Repositories.Base
+namespace Leave.Core.Repositories.Base
 {
     public interface IReadOnlyRepository<T> : IDisposable where T : TEntity 
     {

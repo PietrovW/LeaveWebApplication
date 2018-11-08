@@ -5,9 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entitys\**" />
+    <EmbeddedResource Remove="Entitys\**" />
+    <None Remove="Entitys\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.5" />
     <PackageReference Include="Drapper.Validation" Version="2.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Leave.Core\Leave.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Leave.Core.Domain.Entitys;
-using Leave.DAL.Repositories.Base;
+using Leave.Core.Repositories.Base;
 
-namespace Leave.DAL.Repositories.Interfaces
+namespace Leave.Core.Repositories.Interfaces
 {
     public interface IRecordRepository : IRepository<RecordEntity>
     {
