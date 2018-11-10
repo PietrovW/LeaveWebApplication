@@ -1,8 +1,8 @@
 ﻿using Leave.DAL.Context.Base;
-using Leave.Core.Domain.Entitys;
+using Leave.Core.Entitys;
 using Leave.DAL.Repositories.Base;
 using Leave.DAL.Repositories.Interfaces;
-
+using System;
 
 namespace Leave.DAL.Repositories
 {
@@ -14,13 +14,19 @@ namespace Leave.DAL.Repositories
 
         }
 
+       
+
         internal override dynamic Mapping(EmployeEntity item)
         {
             return new
             {
                 item.Id,
-                item.Name,
-                item.Surname,
+                item.Email,
+                item.Username,
+                item.FullName,
+                item.Role,
+                item.Password,
+                item.Salt,
                 item.FVer,
                 item.Inserted,
                 item.Updated

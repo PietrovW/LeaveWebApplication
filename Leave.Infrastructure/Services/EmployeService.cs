@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Leave.Core.Domain.Entitys;
+using Leave.Core.Entitys;
 using Leave.DAL.Models.Base;
 using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;
@@ -7,7 +7,7 @@ using Leave.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Leave.Infrastructure.Services
@@ -33,16 +33,16 @@ namespace Leave.Infrastructure.Services
 
         public async Task<IEnumerable<EmployeDto>> AllAsync()
         {
-            Tuple<ReturnCode,IEnumerable<EmployeEntity>> employeEntities= await _employeRepository.AllAsync();
+           IEnumerable<EmployeEntity> employeEntities= await _employeRepository.AllAsync();
 
-            return _mapper.Map<IEnumerable<EmployeEntity>,IEnumerable<EmployeDto>> (employeEntities.Item2);
+            return _mapper.Map<IEnumerable<EmployeEntity>,IEnumerable<EmployeDto>> (employeEntities);
         }
 
         public async Task<IEnumerable<EmployeDto>> FindByIdAsync(int id)
         {
-            Tuple<ReturnCode, IEnumerable<EmployeEntity>> employeEntities = await _employeRepository.FindAllAsync(x=>x.Id==id);
+            IEnumerable<EmployeEntity> employeEntities = await _employeRepository.FindAllAsync(x=>x.Id==id);
 
-            return _mapper.Map<IEnumerable<EmployeEntity>, IEnumerable<EmployeDto>>(employeEntities.Item2);
+            return _mapper.Map<IEnumerable<EmployeEntity>, IEnumerable<EmployeDto>>(employeEntities);
         }
 
         public async Task<ReturnCode> RemoveAsync(int id)
@@ -61,6 +61,20 @@ namespace Leave.Infrastructure.Services
         public void Dispose()
         {
             _employeRepository.Dispose();
+        }
+
+        public async Task<EmployeDto> GetByIdAsync(int id)
+        {
+            var employeEntities = await _employeRepository.FindAllAsync(x => x.Id == id);
+            
+            return _mapper.Map<EmployeEntity, EmployeDto>(employeEntities.FirstOrDefault());
+        }
+
+        public async Task<EmployeDto> GetByEmailAsync(string email)
+        {
+            var employeEntities = await _employeRepository.FindAllAsync(x => x.Email == email);
+
+            return _mapper.Map<EmployeEntity, EmployeDto>(employeEntities.FirstOrDefault());
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Leave.Core.Domain.Entitys;
+using Leave.Core.Entitys;
 using Leave.DAL.Models.Base;
 using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;
@@ -33,16 +33,16 @@ namespace Leave.Infrastructure.Services
 
         public async Task<IEnumerable<FurloughDto>> AllAsync()
         {
-            Tuple<ReturnCode, IEnumerable<FurloughEntity>> furloughEntities = await _furloughRepository.AllAsync();
+            IEnumerable<FurloughEntity> furloughEntities = await _furloughRepository.AllAsync();
 
-            return _mapper.Map<IEnumerable<FurloughEntity>, IEnumerable<FurloughDto>>(furloughEntities.Item2);
+            return _mapper.Map<IEnumerable<FurloughEntity>, IEnumerable<FurloughDto>>(furloughEntities);
         }
 
         public async Task<IEnumerable<FurloughDto>> FindByIdAsync(int id)
         {
-            Tuple<ReturnCode, IEnumerable<FurloughEntity>> furloughEntities = await _furloughRepository.FindAllAsync(x=>x.Id==id);
+            IEnumerable<FurloughEntity> furloughEntities = await _furloughRepository.FindAllAsync(x=>x.Id==id);
 
-            return _mapper.Map<IEnumerable<FurloughEntity>, IEnumerable<FurloughDto>>(furloughEntities.Item2);
+            return _mapper.Map<IEnumerable<FurloughEntity>, IEnumerable<FurloughDto>>(furloughEntities);
         }
 
         public async Task<ReturnCode> RemoveAsync(int id)

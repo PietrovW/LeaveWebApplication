@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Leave.Infrastructure.IoC;
@@ -39,12 +37,14 @@ namespace LeaveWebApplication
         {
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddAuthorization(x => x.AddPolicy("admin", p => p.RequireRole("admin")));
+            services.AddAuthorization(x => x.AddPolicy("admin", p => p.RequireRole("admin")));
             services.AddMemoryCache();
-            services.AddMvc();
-                   
-        //    services.AddEntityFrameworkSqlServer()
-                //    .AddEntityFrameworkInMemoryDatabase()
-               //     .AddDbContext<PassengerContext>();
+            services.AddMvc()
+                    .AddJsonOptions(x => x.SerializerSettings.Formatting = Formatting.Indented);
+
+            //    services.AddEntityFrameworkSqlServer()
+            //    .AddEntityFrameworkInMemoryDatabase()
+            //     .AddDbContext<PassengerContext>();
 
             var builder = new ContainerBuilder();
             builder.Populate(services);

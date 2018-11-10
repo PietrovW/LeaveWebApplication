@@ -1,4 +1,4 @@
-﻿using Leave.Core.Domain.Entitys.Base;
+﻿using Leave.Core.Entitys.Base;
 
 namespace Leave.Core.Repositories.Base
 {

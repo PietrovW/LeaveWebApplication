@@ -1,5 +1,6 @@
-﻿using Leave.Core.Domain.Entitys;
+﻿using Leave.Core.Entitys;
 using Leave.DAL.Repositories.Base;
+using System;
 
 namespace Leave.DAL.Repositories.Interfaces
 {

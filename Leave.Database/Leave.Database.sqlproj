@@ -67,6 +67,7 @@
     <Folder Include="Script\Tables\Department" />
     <Folder Include="Script\Tables\Department\PostDeloyment" />
     <Folder Include="Script\Tables\Department\Trigger" />
+    <Folder Include="Snapshots" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Department.sql" />
@@ -77,5 +78,8 @@
     <Build Include="Script\Tables\Department\Trigger\Trigger.sql" />
     <Build Include="Script\Tables\Department\Trigger\tg_bu_department.sql" />
     <Build Include="Script\Tables\Department\Trigger\tg_bi_department.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Snapshots\Leave.Database_20181111_00-01-15.dacpac" />
   </ItemGroup>
 </Project>

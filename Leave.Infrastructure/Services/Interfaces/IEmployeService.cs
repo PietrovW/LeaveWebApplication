@@ -1,11 +1,7 @@
-﻿using Leave.DAL.Models;
-using Leave.DAL.Models.Base;
-using Leave.DAL.Repositories.Base;
+﻿using Leave.DAL.Models.Base;
 using Leave.Infrastructure.DTO;
 using Leave.Infrastructure.Services.Base;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Leave.Infrastructure.Services.Interfaces
@@ -17,5 +13,7 @@ namespace Leave.Infrastructure.Services.Interfaces
         Task<IEnumerable<EmployeDto>> FindByIdAsync(int id);
         Task<ReturnCode> RemoveAsync(int id);
         Task<ReturnCode> UpdateAsync(EmployeDto entity);
+        Task<EmployeDto> GetByIdAsync(int id);
+        Task<EmployeDto> GetByEmailAsync(string email);
     }
 }

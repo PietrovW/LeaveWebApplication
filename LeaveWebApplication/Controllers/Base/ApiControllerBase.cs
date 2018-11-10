@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Leave.Infrastructure.Commands.Authenticated;
 using Leave.Infrastructure.Commands.Base;
-using Leave.Infrastructure.Commands.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leave.Api.Controllers.Base

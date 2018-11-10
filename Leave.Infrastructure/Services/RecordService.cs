@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
-using Leave.Core.Domain.Entitys;
+using Leave.Core.Entitys;
 using Leave.DAL.Models.Base;
 using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;
 using Leave.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Leave.Infrastructure.Services
@@ -33,16 +31,16 @@ namespace Leave.Infrastructure.Services
 
         public async Task<IEnumerable<RecordDto>> AllAsync()
         {
-            Tuple<ReturnCode, IEnumerable<RecordEntity>> recordEntities = await _recordRepository.AllAsync();
+            IEnumerable<RecordEntity> recordEntities = await _recordRepository.AllAsync();
 
-            return _mapper.Map<IEnumerable<RecordEntity>, IEnumerable<RecordDto>>(recordEntities.Item2);
+            return _mapper.Map<IEnumerable<RecordEntity>, IEnumerable<RecordDto>>(recordEntities);
         }
 
         public async Task<IEnumerable<RecordDto>> FindByIdAsync(int id)
         {
-            Tuple<ReturnCode, IEnumerable<RecordEntity>> recordEntities = await _recordRepository.FindAllAsync(x=>x.Id==id);
+           IEnumerable<RecordEntity> recordEntities = await _recordRepository.FindAllAsync(x=>x.Id==id);
 
-            return _mapper.Map<IEnumerable<RecordEntity>, IEnumerable<RecordDto>>(recordEntities.Item2);
+            return _mapper.Map<IEnumerable<RecordEntity>, IEnumerable<RecordDto>>(recordEntities);
         }
 
         public async Task<ReturnCode> RemoveAsync(int id)

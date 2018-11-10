@@ -73,7 +73,7 @@ namespace Leave.DAL.Extensions
             return result;
         }
 
-        public async static Task<Tuple<ReturnCode, IEnumerable<T>>> SelectAsync<T>(
+        public async static Task<IEnumerable<T>> SelectAsync<T>(
            this SqlConnection connection,
            string TableName, Expression<Func<T, bool>> predicate = null, string where = null, object param = null, IsolationLevel iso = IsolationLevel.Chaos)
         {
@@ -134,7 +134,7 @@ namespace Leave.DAL.Extensions
                 connection.Dispose();
             }
 
-            return new Tuple<ReturnCode, IEnumerable<T>>(resultCode, results);
+            return results;
         }
 
         public static async Task<Tuple<ReturnCode, T>> InsertAsync<T>(this SqlConnection connection, string tableName, dynamic param, IsolationLevel iso = IsolationLevel.Chaos)

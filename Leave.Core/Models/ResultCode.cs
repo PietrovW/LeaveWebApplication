@@ -1,4 +1,4 @@
-﻿namespace Leave.Core.Domain.Models.Base
+﻿namespace Leave.Core.Models.Base
 {
     public enum ReturnCode
     {

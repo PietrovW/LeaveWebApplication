@@ -1,4 +1,4 @@
-﻿using Leave.Core.Domain.Entitys.Base;
+﻿using Leave.Core.Entitys.Base;
 using Leave.DAL.Models.Base;
 using System;
 using System.Threading.Tasks;

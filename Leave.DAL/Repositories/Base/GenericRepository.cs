@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using Dapper;
 using System.Threading.Tasks;
 using Leave.DAL.Extensions;
-using Leave.Core.Domain.Entitys.Base;
+using Leave.Core.Entitys.Base;
 
 namespace Leave.DAL.Repositories.Base
 {
@@ -26,9 +26,9 @@ namespace Leave.DAL.Repositories.Base
             return returnCode;
         }
 
-        public virtual async Task<Tuple<ReturnCode, IEnumerable<T>>> AllAsync()
+        public virtual async Task<IEnumerable<T>> AllAsync()
         {
-            Tuple<ReturnCode, IEnumerable<T>> items = null;
+            IEnumerable<T> items = null;
 
             items = await this.Connection.SelectAsync<T>(TableName);
             return items;
@@ -47,18 +47,18 @@ namespace Leave.DAL.Repositories.Base
             return returnCode;
         }
 
-        internal virtual dynamic Mapping(T item)
+        public virtual async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate)
         {
-            return item;
-        }
-
-        public virtual async Task<Tuple<ReturnCode, IEnumerable<T>>> FindAllAsync(Expression<Func<T, bool>> predicate)
-        {
-            Tuple<ReturnCode, IEnumerable<T>> items = null;
+            IEnumerable<T> items = null;
 
             items = await Connection.SelectAsync<T>(TableName, predicate);
 
             return items;
+        }
+
+        internal virtual dynamic Mapping(T item)
+        {
+            return item;
         }
 
         public void Dispose()

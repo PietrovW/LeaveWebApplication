@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Leave.Core.Domain.Entitys.Base
+namespace Leave.Core.Entitys.Base
 {
     public abstract class TEntity
     {

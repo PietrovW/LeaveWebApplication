@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Leave.DAL.Entitys;
+using Leave.Core.Entitys;
 using Leave.Infrastructure.DTO;
 
 namespace Leave.Infrastructure.Mappers

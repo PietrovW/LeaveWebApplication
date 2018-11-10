@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Leave.Core.Domain.Entitys;
+using Leave.Core.Entitys;
 using Leave.DAL.Models.Base;
 using Leave.DAL.Repositories.Interfaces;
 using Leave.Infrastructure.DTO;
@@ -31,18 +31,18 @@ namespace Leave.Infrastructure.Services
 
         public async Task<IEnumerable<DepartmentDto>> AllAsync()
         {
-            Tuple<ReturnCode, IEnumerable<DepartmentEntity>> departmentEntities = await _departmentRepository.AllAsync();
+            IEnumerable<DepartmentEntity> departmentEntities = await _departmentRepository.AllAsync();
 
-            return _mapper.Map<IEnumerable<DepartmentEntity>, IEnumerable<DepartmentDto>>(departmentEntities.Item2);
+            return _mapper.Map<IEnumerable<DepartmentEntity>, IEnumerable<DepartmentDto>>(departmentEntities);
         }
 
        
         public async Task<IEnumerable<DepartmentDto>> FindByIdAsync(int id)
         {
             
-            Tuple<ReturnCode, IEnumerable<DepartmentEntity>> departmentEntities = await _departmentRepository.FindAllAsync(x=>x.Id==id);
+            IEnumerable<DepartmentEntity> departmentEntities = await _departmentRepository.FindAllAsync(x=>x.Id==id);
 
-            return _mapper.Map<IEnumerable<DepartmentEntity>, IEnumerable<DepartmentDto>>(departmentEntities.Item2);
+            return _mapper.Map<IEnumerable<DepartmentEntity>, IEnumerable<DepartmentDto>>(departmentEntities);
         }
 
         public async Task<ReturnCode> RemoveAsync(int id)

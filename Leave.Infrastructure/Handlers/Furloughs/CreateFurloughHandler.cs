@@ -1,8 +1,6 @@
-﻿using Leave.Infrastructure.Commands.Furloughs;
-using Leave.Infrastructure.Commands.Interfaces;
+﻿using Leave.Infrastructure.Commands.Base;
+using Leave.Infrastructure.Commands.Furloughs;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Leave.Infrastructure.Handlers.Furloughs

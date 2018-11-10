@@ -1,9 +1,7 @@
 ﻿using Leave.Api.Controllers.Base;
-using Leave.Infrastructure.Commands.Interfaces;
+using Leave.Infrastructure.Commands.Base;
+using Leave.Infrastructure.Commands.Users;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Leave.Api.Controllers

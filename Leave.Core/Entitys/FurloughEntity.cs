@@ -1,6 +1,6 @@
-﻿using Leave.Core.Domain.Entitys.Base;
+﻿using Leave.Core.Entitys.Base;
 
-namespace Leave.Core.Domain.Entitys
+namespace Leave.Core.Entitys
 {
     public class FurloughEntity : TEntity
     {

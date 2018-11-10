@@ -1,5 +1,5 @@
-﻿using Leave.Core.Domain.Entitys.Base;
-using Leave.Core.Domain.Models.Base;
+﻿using Leave.Core.Entitys.Base;
+using Leave.Core.Models.Base;
 using System;
 using System.Threading.Tasks;
 

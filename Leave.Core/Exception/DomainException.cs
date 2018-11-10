@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leave.Core.Domain.Exception
+namespace Leave.Core.Exception
 {
     public class DomainException : LeaveException
     {

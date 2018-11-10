@@ -1,7 +1,7 @@
-﻿using Leave.Core.Domain.Entitys.Base;
+﻿using Leave.Core.Entitys.Base;
 using System;
 
-namespace Leave.Core.Domain.Entitys
+namespace Leave.Core.Entitys
 {
     public class RecordEntity : TEntity
     {

@@ -2,8 +2,7 @@
 
 namespace Leave.Infrastructure.Commands.Furloughs
 {
-    public class CreateFurlough : ICommand
+    public class DeleteFurlough : ICommand
     {
-        public int UserId { get; set; }
     }
 }

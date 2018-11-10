@@ -1,10 +1,7 @@
 ﻿using Autofac;
 using Leave.Infrastructure.Commands;
-using Leave.Infrastructure.Commands.Interfaces;
-using System;
-using System.Collections.Generic;
+using Leave.Infrastructure.Commands.Base;
 using System.Reflection;
-using System.Text;
 
 namespace Leave.Infrastructure.IoC.Modules
 {

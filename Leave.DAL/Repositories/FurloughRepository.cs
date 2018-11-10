@@ -1,5 +1,5 @@
 ﻿using Leave.DAL.Context.Base;
-using Leave.Core.Domain.Entitys;
+using Leave.Core.Entitys;
 using Leave.DAL.Repositories.Base;
 using Leave.DAL.Repositories.Interfaces;
 
