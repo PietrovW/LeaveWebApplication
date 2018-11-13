@@ -1,6 +1,7 @@
 ﻿using Leave.DAL.Models.Base;
 using Leave.Infrastructure.DTO;
 using Leave.Infrastructure.Services.Base;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,5 +16,8 @@ namespace Leave.Infrastructure.Services.Interfaces
         Task<ReturnCode> UpdateAsync(EmployeDto entity);
         Task<EmployeDto> GetByIdAsync(int id);
         Task<EmployeDto> GetByEmailAsync(string email);
+        Task RegisterAsync(Guid userId, string email,
+            string username, string password, string role);
+        Task LoginAsync(string email, string password);
     }
 }
